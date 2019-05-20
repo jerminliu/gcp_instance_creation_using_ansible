@@ -1,0 +1,20 @@
+- name: Compute Engine Instance Examples
+  hosts: localhost
+  vars:
+    service_account_email: "************@developer.gserviceaccount.com"
+    credentials_file: "/opt/****.json"
+    project_id: "*******************"
+  tasks:
+    - name: create multiple instances
+      # Basic provisioning example.  Create multiple Debian 8 instances in the
+      # us-central1-a Zone of n1-standard-1 machine type.
+      gce:
+        instance_names: test1,test2
+        zone: us-central1-a
+        machine_type: n1-standard-1
+        image: debian-8
+        state: absent
+        service_account_email: "{{ service_account_email }}"
+        credentials_file: "{{ credentials_file }}"
+        project_id: "{{ project_id }}"
+        disk_size: 8
